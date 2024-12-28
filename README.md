@@ -18,7 +18,8 @@
 **Struct Definition:**
 
 A Question struct is defined to hold the question text, a list of options, and the index of the correct answer.
-Function to Display Questions:
+
+**Function to Display Questions:**
 
 The displayQuestion function takes a Question object and prints the question along with its options.
 
