@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Question {
+    string questionText;
+    vector<string> options;
+    int correctAnswerIndex;
+};
+
+void displayQuestion(const Question& q) {
+    cout << q.questionText << endl;
+    for (int i = 0; i < q.options.size(); ++i) {
+        cout << i + 1 << ". " << q.options[i] << endl;
+    }
+}
+
+int main() {
+    vector<Question> quiz = {
+        {"What is the capital of France?", {"Berlin", "Madrid", "Paris", "Lisbon"}, 2},
+        {"Which planet is known as the Red Planet?", {"Earth", "Mars", "Jupiter", "Saturn"}, 1},
+        {"What is the largest ocean on Earth?", {"Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"}, 3},
+        {"Who wrote 'Romeo and Juliet'?", {"Charles Dickens", "Mark Twain", "William Shakespeare", "Jane Austen"}, 2},
+        {"What is the chemical symbol for water?", {"O2", "H2O", "CO2", "NaCl"}, 1}
+    };
+
+    int score = 0;
+    int totalQuestions = quiz.size();
+
+    cout << "Welcome to the Quiz Game!" << endl;
+
+    for (const auto& question : quiz) {
+        displayQuestion(question);
+        cout << "Enter your answer option: ";
+        int userAnswer;
+        cin >> userAnswer;
+
+        // Check if the answer is correct
+        if (userAnswer - 1 == question.correctAnswerIndex) {
+            cout << "Correct!" << endl;
+            score++;
+        } else {
+            cout << "Incorrect! The correct answer was: " << question.options[question.correctAnswerIndex] << endl;
+        }
+        cout << endl; // New line for better readability
+    }
+
+    // Display final score
+    cout << "You scored " << score << " out of " << totalQuestions << "." << endl;
+
+    return 0;
+}
